@@ -23,12 +23,14 @@
   --text:#172033;
   --muted:#687386;
   --border:#dce5df;
+  --danger:#d62828;
 }
 
 body{
   background:var(--bg);
   color:var(--text);
-  padding-bottom:75px;
+  padding-bottom:80px;
+  transition:.2s;
 }
 
 body.dark{
@@ -42,7 +44,7 @@ body.dark{
 header{
   background:linear-gradient(135deg,var(--dark),var(--green));
   color:white;
-  padding:17px 20px;
+  padding:16px 18px;
   position:sticky;
   top:0;
   z-index:100;
@@ -57,7 +59,7 @@ header{
 }
 
 .logo{
-  font-size:22px;
+  font-size:21px;
   font-weight:bold;
 }
 
@@ -67,7 +69,7 @@ header{
 
 .theme{
   border:0;
-  border-radius:8px;
+  border-radius:9px;
   padding:9px 12px;
   cursor:pointer;
 }
@@ -75,7 +77,7 @@ header{
 main{
   max-width:1100px;
   margin:auto;
-  padding:25px 18px;
+  padding:22px 16px;
 }
 
 .page{
@@ -90,13 +92,13 @@ main{
   background:linear-gradient(135deg,#064d2d,#0b9b54);
   color:white;
   border-radius:20px;
-  padding:55px 25px;
+  padding:48px 22px;
   text-align:center;
 }
 
 .hero h1{
-  font-size:40px;
-  margin-bottom:15px;
+  font-size:38px;
+  margin-bottom:14px;
 }
 
 .hero h1 span{
@@ -111,8 +113,8 @@ main{
 
 .btn{
   border:0;
-  padding:13px 18px;
-  margin:6px;
+  padding:12px 17px;
+  margin:5px;
   border-radius:9px;
   font-weight:bold;
   cursor:pointer;
@@ -135,11 +137,11 @@ main{
 
 .title{
   text-align:center;
-  margin:20px 0 25px;
+  margin:18px 0 23px;
 }
 
 .title h2{
-  font-size:29px;
+  font-size:28px;
   margin-bottom:7px;
 }
 
@@ -150,13 +152,13 @@ main{
 .stats{
   display:grid;
   grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin:25px 0;
+  gap:13px;
+  margin:22px 0;
 }
 
 .stat{
   background:var(--card);
-  padding:20px;
+  padding:19px 10px;
   border-radius:14px;
   text-align:center;
   border:1px solid var(--border);
@@ -165,46 +167,58 @@ main{
 .stat strong{
   display:block;
   color:var(--green);
-  font-size:27px;
+  font-size:26px;
+  margin-bottom:4px;
 }
 
 .cards{
   display:grid;
   grid-template-columns:repeat(2,1fr);
-  gap:17px;
+  gap:16px;
 }
 
 .card{
   background:var(--card);
-  padding:23px;
+  padding:21px;
   border-radius:15px;
   border:1px solid var(--border);
 }
 
 .card .icon{
-  font-size:35px;
+  font-size:34px;
 }
 
 .card h3{
-  margin:10px 0;
+  margin:9px 0;
 }
 
 .card p{
   color:var(--muted);
   line-height:1.5;
-  min-height:65px;
+  margin-bottom:10px;
+}
+
+.subject-card{
+  cursor:pointer;
+  transition:.2s;
+}
+
+.subject-card:hover{
+  transform:translateY(-2px);
 }
 
 .practice{
   background:var(--card);
-  padding:24px;
+  padding:20px;
   border-radius:16px;
   border:1px solid var(--border);
 }
 
-.top{
+.practice-head{
   display:flex;
   justify-content:space-between;
+  align-items:center;
+  gap:10px;
   margin-bottom:15px;
 }
 
@@ -213,66 +227,111 @@ main{
   font-weight:bold;
 }
 
+.timer{
+  background:#fff3cd;
+  color:#7a5700;
+  padding:7px 10px;
+  border-radius:8px;
+  font-weight:bold;
+}
+
+body.dark .timer{
+  background:#3d351c;
+  color:#ffe28a;
+}
+
 .progress{
   height:8px;
   background:#dfe6e2;
   border-radius:10px;
   overflow:hidden;
-  margin-bottom:22px;
+  margin-bottom:20px;
 }
 
 .bar{
   height:100%;
   width:0;
   background:var(--green);
+  transition:.2s;
+}
+
+.question-number{
+  color:var(--muted);
+  font-size:14px;
+  margin-bottom:8px;
 }
 
 .question{
   font-size:20px;
   font-weight:bold;
-  margin-bottom:20px;
+  line-height:1.45;
+  margin-bottom:18px;
 }
 
 .option{
   width:100%;
   padding:14px;
-  margin:8px 0;
+  margin:7px 0;
   text-align:left;
   border:1px solid var(--border);
   border-radius:9px;
   background:var(--bg);
   color:var(--text);
   cursor:pointer;
+  font-size:15px;
+}
+
+.option:hover{
+  border-color:var(--green);
 }
 
 .option.correct{
   background:#d9f5e3;
   border-color:#159447;
+  color:#164d2f;
 }
 
 .option.wrong{
   background:#ffe1e1;
   border-color:#d33;
+  color:#8d1c1c;
 }
 
 .result{
   font-weight:bold;
-  margin:15px 0;
+  margin:14px 0;
 }
 
 .explanation{
   display:none;
   background:#eaf7ef;
   color:#245b3c;
-  padding:15px;
+  padding:14px;
   border-radius:9px;
-  margin-bottom:15px;
+  margin-bottom:14px;
+  line-height:1.5;
+}
+
+body.dark .explanation{
+  background:#1e3a2a;
+  color:#bce8ca;
+}
+
+.practice-buttons{
+  display:flex;
+  justify-content:space-between;
+  gap:8px;
+  margin-top:8px;
+}
+
+.practice-buttons .btn{
+  flex:1;
 }
 
 .score{
   text-align:center;
   background:var(--card);
-  padding:35px;
+  padding:30px 20px;
   border-radius:16px;
   border:1px solid var(--border);
 }
@@ -281,31 +340,39 @@ main{
   font-size:55px;
   color:var(--green);
   font-weight:bold;
+  margin:10px 0;
 }
 
-.tool{
+.score-message{
+  color:var(--muted);
+  margin:10px 0 15px;
+}
+
+.tool,.setting{
   background:var(--card);
-  padding:22px;
+  padding:20px;
   border-radius:15px;
-  margin-bottom:15px;
+  margin-bottom:14px;
   border:1px solid var(--border);
 }
 
-.tool h3{
+.tool h3,.setting h3{
   margin-bottom:8px;
 }
 
-.tool p{
+.tool p,.setting p{
   color:var(--muted);
   line-height:1.6;
 }
 
-.setting{
-  background:var(--card);
-  padding:20px;
-  border-radius:14px;
-  border:1px solid var(--border);
-  margin-bottom:15px;
+.hidden{
+  display:none!important;
+}
+
+footer{
+  text-align:center;
+  padding:28px 15px;
+  color:var(--muted);
 }
 
 nav{
@@ -318,17 +385,19 @@ nav{
   z-index:200;
   display:flex;
   justify-content:center;
+  overflow-x:auto;
 }
 
 nav button{
   flex:1;
+  min-width:70px;
   max-width:150px;
   border:0;
   background:transparent;
   color:var(--muted);
-  padding:13px 5px;
+  padding:11px 4px;
   cursor:pointer;
-  font-size:12px;
+  font-size:11px;
 }
 
 nav button.active{
@@ -338,14 +407,8 @@ nav button.active{
 
 nav span{
   display:block;
-  font-size:19px;
-  margin-bottom:3px;
-}
-
-footer{
-  text-align:center;
-  padding:30px 15px;
-  color:var(--muted);
+  font-size:18px;
+  margin-bottom:2px;
 }
 
 @media(max-width:650px){
@@ -360,6 +423,10 @@ footer{
 
 .cards{
   grid-template-columns:1fr;
+}
+
+.practice-buttons{
+  flex-direction:column;
 }
 
 }
@@ -377,6 +444,8 @@ footer{
 
 <main>
 
+<!-- HOME -->
+
 <section id="home" class="page active">
 
   <div class="hero">
@@ -385,17 +454,18 @@ footer{
 
     <p>
       Your free JAMB 2027 preparation platform.
-      Practice questions, learn from mistakes and track your progress.
+      Practice original JAMB-style questions, learn from mistakes
+      and track your progress.
     </p>
 
     <br>
 
-    <button class="btn primary" onclick="showPage('practice')">
+    <button class="btn primary" onclick="showPage('subjects')">
       🚀 Start Practicing
     </button>
 
-    <button class="btn white" onclick="showPage('subjects')">
-      📚 Subjects
+    <button class="btn white" onclick="showPage('study')">
+      📚 Study Centre
     </button>
 
   </div>
@@ -408,7 +478,7 @@ footer{
     </div>
 
     <div class="stat">
-      <strong>4+</strong>
+      <strong>4</strong>
       Subjects
     </div>
 
@@ -426,16 +496,16 @@ footer{
 
   <div class="title">
     <h2>Everything You Need</h2>
-    <p>Study smarter and keep improving.</p>
+    <p>Build your confidence one question at a time.</p>
   </div>
 
   <div class="cards">
 
     <div class="card">
       <div class="icon">📝</div>
-      <h3>Practice Questions</h3>
-      <p>Test yourself with JAMB-style practice questions.</p>
-      <button class="btn green" onclick="showPage('practice')">
+      <h3>CBT Practice</h3>
+      <p>Practice with original questions designed in a JAMB-style format.</p>
+      <button class="btn green" onclick="showPage('subjects')">
         Practice
       </button>
     </div>
@@ -443,7 +513,7 @@ footer{
     <div class="card">
       <div class="icon">📊</div>
       <h3>Track Results</h3>
-      <p>See how well you performed in your practice sessions.</p>
+      <p>See your latest score and keep improving your performance.</p>
       <button class="btn green" onclick="showPage('results')">
         My Results
       </button>
@@ -453,72 +523,80 @@ footer{
 
 </section>
 
+
+<!-- SUBJECTS -->
+
 <section id="subjects" class="page">
 
   <div class="title">
     <h2>Choose Your Subject</h2>
-    <p>Select a subject to begin practicing.</p>
+    <p>Select a subject to begin your practice.</p>
   </div>
 
   <div class="cards">
 
-    <div class="card">
+    <div class="card subject-card" onclick="startSubject('English')">
       <div class="icon">📖</div>
       <h3>Use of English</h3>
-      <p>Vocabulary, grammar and comprehension.</p>
-      <button class="btn green" onclick="startSubject('English')">
-        Start
-      </button>
+      <p>Vocabulary, grammar, sentence completion and comprehension.</p>
+      <button class="btn green">Start English</button>
     </div>
 
-    <div class="card">
+    <div class="card subject-card" onclick="startSubject('Mathematics')">
       <div class="icon">🔢</div>
       <h3>Mathematics</h3>
-      <p>Numbers, algebra, geometry and calculations.</p>
-      <button class="btn green" onclick="startSubject('Mathematics')">
-        Start
-      </button>
+      <p>Numbers, algebra, geometry, percentages and calculations.</p>
+      <button class="btn green">Start Mathematics</button>
     </div>
 
-    <div class="card">
+    <div class="card subject-card" onclick="startSubject('Government')">
       <div class="icon">🏛️</div>
       <h3>Government</h3>
-      <p>Democracy, constitution and political systems.</p>
-      <button class="btn green" onclick="startSubject('Government')">
-        Start
-      </button>
+      <p>Democracy, constitution, political systems and citizenship.</p>
+      <button class="btn green">Start Government</button>
     </div>
 
-    <div class="card">
+    <div class="card subject-card" onclick="startSubject('Biology')">
       <div class="icon">🧬</div>
       <h3>Biology</h3>
-      <p>Cells, ecology, genetics and human biology.</p>
-      <button class="btn green" onclick="startSubject('Biology')">
-        Start
-      </button>
+      <p>Cells, ecology, genetics, nutrition and human biology.</p>
+      <button class="btn green">Start Biology</button>
     </div>
 
   </div>
 
 </section>
 
+
+<!-- PRACTICE -->
+
 <section id="practice" class="page">
 
   <div class="title">
-    <h2>Practice Arena</h2>
-    <p>Answer each question and learn from the explanation.</p>
+    <h2>CBT Practice Arena</h2>
+    <p>Choose an answer, check the explanation and keep learning.</p>
   </div>
 
   <div class="practice">
 
-    <div class="top">
-      <div class="subject" id="subject"></div>
-      <div id="counter"></div>
+    <div class="practice-head">
+
+      <div>
+        <div class="subject" id="subject"></div>
+        <div id="counter"></div>
+      </div>
+
+      <div class="timer" id="timer">
+        ⏱️ 05:00
+      </div>
+
     </div>
 
     <div class="progress">
       <div class="bar" id="bar"></div>
     </div>
+
+    <div class="question-number" id="questionNumber"></div>
 
     <div class="question" id="question"></div>
 
@@ -528,13 +606,24 @@ footer{
 
     <div class="explanation" id="explanation"></div>
 
-    <button class="btn green" onclick="nextQuestion()">
-      Next Question →
-    </button>
+    <div class="practice-buttons">
+
+      <button class="btn" onclick="previousQuestion()">
+        ← Previous
+      </button>
+
+      <button class="btn green" onclick="nextQuestion()">
+        Next →
+      </button>
+
+    </div>
 
   </div>
 
 </section>
+
+
+<!-- RESULTS -->
 
 <section id="results" class="page">
 
@@ -545,19 +634,17 @@ footer{
 
   <div class="score">
 
-    <div>Current Practice Score</div>
+    <div>Latest Practice Score</div>
 
     <div class="bigscore" id="finalScore">
       0%
     </div>
 
-    <p id="scoreInfo">
+    <div class="score-message" id="scoreInfo">
       Start a practice session to see your result.
-    </p>
+    </div>
 
-    <br>
-
-    <button class="btn green" onclick="showPage('practice')">
+    <button class="btn green" onclick="showPage('subjects')">
       Practice Again
     </button>
 
@@ -565,25 +652,28 @@ footer{
 
 </section>
 
+
+<!-- STUDY -->
+
 <section id="study" class="page">
 
   <div class="title">
     <h2>Study Centre</h2>
-    <p>Simple habits that can improve your preparation.</p>
+    <p>Simple habits that can improve your JAMB preparation.</p>
   </div>
 
   <div class="tool">
     <h3>🎯 Practice Every Day</h3>
     <p>
-      Even a short practice session can help you become
-      more familiar with questions and improve your speed.
+      Regular practice helps you become familiar with different
+      question styles and improves your speed.
     </p>
   </div>
 
   <div class="tool">
     <h3>🧠 Understand Your Mistakes</h3>
     <p>
-      Don't just check the correct option. Read the explanation
+      Do not only memorize the correct option. Read the explanation
       and understand why the answer is correct.
     </p>
   </div>
@@ -591,12 +681,23 @@ footer{
   <div class="tool">
     <h3>📚 Follow the Syllabus</h3>
     <p>
-      Focus your preparation around the topics required
-      for your JAMB subjects.
+      Build your preparation around the topics required for each
+      JAMB subject.
+    </p>
+  </div>
+
+  <div class="tool">
+    <h3>⏱️ Improve Your Speed</h3>
+    <p>
+      As your knowledge improves, practice answering questions
+      accurately within a limited amount of time.
     </p>
   </div>
 
 </section>
+
+
+<!-- SETTINGS -->
 
 <section id="settings" class="page">
 
@@ -609,7 +710,7 @@ footer{
 
     <h3>🌙 Dark Mode</h3>
 
-    <p style="color:var(--muted);margin:8px 0 12px;">
+    <p>
       Change the appearance of the website.
     </p>
 
@@ -621,14 +722,14 @@ footer{
 
   <div class="setting">
 
-    <h3>🔄 Reset Score</h3>
+    <h3>🔄 Reset Progress</h3>
 
-    <p style="color:var(--muted);margin:8px 0 12px;">
-      Reset your current practice result.
+    <p>
+      Reset your saved score and practice progress.
     </p>
 
     <button class="btn green" onclick="resetScore()">
-      Reset
+      Reset Progress
     </button>
 
   </div>
@@ -637,10 +738,14 @@ footer{
 
 </main>
 
+
 <footer>
   <strong>JAMBScore 2027</strong>
   <p>Your JAMB preparation journey starts here.</p>
 </footer>
+
+
+<!-- NAVIGATION -->
 
 <nav>
 
@@ -676,9 +781,116 @@ footer{
 
 </nav>
 
+
 <script>
 
+/* =========================
+   ORIGINAL PRACTICE QUESTIONS
+   ========================= */
+
 const questions = [
+
+/* ENGLISH */
+
+{
+subject:"English",
+question:"Choose the word closest in meaning to 'brief'.",
+options:["Long","Short","Heavy","Slow"],
+answer:1,
+explanation:"Brief means short or lasting for only a short time."
+},
+
+{
+subject:"English",
+question:"The opposite of 'ancient' is:",
+options:["Old","Historic","Modern","Traditional"],
+answer:2,
+explanation:"Modern refers to something belonging to the present or recent times."
+},
+
+{
+subject:"English",
+question:"Choose the correctly spelt word.",
+options:["Enviroment","Environment","Envirorment","Envaironment"],
+answer:1,
+explanation:"Environment is the correct spelling."
+},
+
+{
+subject:"English",
+question:"Choose the word closest in meaning to 'generous'.",
+options:["Selfish","Kind-hearted","Angry","Careless"],
+answer:1,
+explanation:"A generous person is willing to give or share freely."
+},
+
+{
+subject:"English",
+question:"Complete the sentence: The students arrived ___ the school early.",
+options:["at","on","by","into"],
+answer:0,
+explanation:"The correct preposition is 'at': arrived at the school."
+},
+
+{
+subject:"English",
+question:"Which word is correctly used in this sentence? 'She ___ her homework yesterday.'",
+options:["complete","completed","completing","completes"],
+answer:1,
+explanation:"'Yesterday' indicates past tense, so 'completed' is correct."
+},
+
+/* MATHEMATICS */
+
+{
+subject:"Mathematics",
+question:"If 2x + 6 = 14, what is x?",
+options:["2","3","4","5"],
+answer:2,
+explanation:"Subtract 6 from both sides: 2x = 8. Divide by 2: x = 4."
+},
+
+{
+subject:"Mathematics",
+question:"What is 25% of 200?",
+options:["25","40","50","75"],
+answer:2,
+explanation:"25% = 25/100. Therefore 25/100 × 200 = 50."
+},
+
+{
+subject:"Mathematics",
+question:"What is 7 × 8?",
+options:["48","54","56","64"],
+answer:2,
+explanation:"7 multiplied by 8 equals 56."
+},
+
+{
+subject:"Mathematics",
+question:"Simplify: 3x + 2x.",
+options:["5","5x","6x","x"],
+answer:1,
+explanation:"Like terms are added: 3x + 2x = 5x."
+},
+
+{
+subject:"Mathematics",
+question:"What is the value of 15 + 27?",
+options:["32","40","42","45"],
+answer:2,
+explanation:"15 + 27 = 42."
+},
+
+{
+subject:"Mathematics",
+question:"A shirt costs ₦4,000. What is 10% of its price?",
+options:["₦40","₦100","₦400","₦4,000"],
+answer:2,
+explanation:"10% of ₦4,000 = 10/100 × 4,000 = ₦400."
+},
+
+/* GOVERNMENT */
 
 {
 subject:"Government",
@@ -716,86 +928,49 @@ options:[
 "Business advertisements"
 ],
 answer:1,
-explanation:"A constitution contains the fundamental principles and rules guiding government."
+explanation:"A constitution contains fundamental principles and rules guiding government."
 },
 
 {
-subject:"English",
-question:"Choose the word closest in meaning to 'brief'.",
+subject:"Government",
+question:"Which of the following is a feature of a federal system of government?",
 options:[
-"Long",
-"Short",
-"Heavy",
-"Slow"
+"All powers are held by one local authority",
+"Power is constitutionally divided between levels of government",
+"There are no laws",
+"Only traditional rulers make decisions"
 ],
 answer:1,
-explanation:"Brief means short."
+explanation:"Federalism involves constitutional division of powers between different levels of government."
 },
 
 {
-subject:"English",
-question:"The opposite of 'ancient' is:",
+subject:"Government",
+question:"The right to vote in an election is known as:",
 options:[
-"Old",
-"Historic",
-"Modern",
-"Traditional"
+"Franchise",
+"Judicial review",
+"Immunity",
+"Delegation"
 ],
-answer:2,
-explanation:"Modern is the opposite of ancient."
+answer:0,
+explanation:"Franchise refers to the right of citizens to vote in elections."
 },
 
 {
-subject:"English",
-question:"Choose the correctly spelt word.",
+subject:"Government",
+question:"The principle of separation of powers is designed mainly to:",
 options:[
-"Enviroment",
-"Environment",
-"Envirorment",
-"Envaironment"
+"Concentrate power in one person",
+"Prevent excessive concentration of government power",
+"Remove elections",
+"Stop citizens from voting"
 ],
 answer:1,
-explanation:"Environment is the correct spelling."
+explanation:"Separation of powers helps prevent excessive concentration of power."
 },
 
-{
-subject:"Mathematics",
-question:"If 2x + 6 = 14, what is x?",
-options:[
-"2",
-"3",
-"4",
-"5"
-],
-answer:2,
-explanation:"2x = 8, therefore x = 4."
-},
-
-{
-subject:"Mathematics",
-question:"What is 25% of 200?",
-options:[
-"25",
-"40",
-"50",
-"75"
-],
-answer:2,
-explanation:"25% of 200 is 50."
-},
-
-{
-subject:"Mathematics",
-question:"What is 7 × 8?",
-options:[
-"48",
-"54",
-"56",
-"64"
-],
-answer:2,
-explanation:"7 multiplied by 8 equals 56."
-},
+/* BIOLOGY */
 
 {
 subject:"Biology",
@@ -807,7 +982,7 @@ options:[
 "Cell wall"
 ],
 answer:2,
-explanation:"Mitochondria are major sites of cellular respiration."
+explanation:"Mitochondria are major sites of cellular respiration and energy release."
 },
 
 {
@@ -834,207 +1009,132 @@ options:[
 ],
 answer:2,
 explanation:"Photosynthesis allows green plants to manufacture food using light energy."
+},
+
+{
+subject:"Biology",
+question:"Which structure controls many activities of a cell?",
+options:[
+"Nucleus",
+"Cell wall",
+"Vacuole",
+"Chlorophyll"
+],
+answer:0,
+explanation:"The nucleus contains genetic material and controls many cellular activities."
+},
+
+{
+subject:"Biology",
+question:"Which gas is required by green plants during photosynthesis?",
+options:[
+"Oxygen",
+"Nitrogen",
+"Carbon dioxide",
+"Hydrogen"
+],
+answer:2,
+explanation:"Plants use carbon dioxide during photosynthesis to produce food."
+},
+
+{
+subject:"Biology",
+question:"The process by which organisms produce offspring is called:",
+options:[
+"Respiration",
+"Reproduction",
+"Excretion",
+"Nutrition"
+],
+answer:1,
+explanation:"Reproduction is the biological process through which organisms produce offspring."
 }
 
 ];
 
-let currentQuestion=0;
-let score=0;
-let answered=false;
-let subjectFilter=null;
+
+/* =========================
+   APP VARIABLES
+   ========================= */
+
+let currentQuestions = [];
+let currentQuestion = 0;
+let score = 0;
+let answered = false;
+let selectedAnswer = null;
+let timerSeconds = 300;
+let timerInterval = null;
+
+
+/* =========================
+   PAGE NAVIGATION
+   ========================= */
 
 function showPage(page){
 
-document.querySelectorAll(".page").forEach(function(section){
-section.classList.remove("active");
-});
+  document.querySelectorAll(".page").forEach(function(section){
+    section.classList.remove("active");
+  });
 
-document.getElementById(page).classList.add("active");
+  const selectedPage = document.getElementById(page);
 
-document.querySelectorAll("nav button").forEach(function(button){
-button.classList.remove("active");
-});
+  if(selectedPage){
+    selectedPage.classList.add("active");
+  }
 
-const nav=document.getElementById("nav-"+page);
+  document.querySelectorAll("nav button").forEach(function(button){
+    button.classList.remove("active");
+  });
 
-if(nav){
-nav.classList.add("active");
+  const nav = document.getElementById("nav-"+page);
+
+  if(nav){
+    nav.classList.add("active");
+  }
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
 }
 
-window.scrollTo({
-top:0,
-behavior:"smooth"
-});
 
-}
+/* =========================
+   START SUBJECT
+   ========================= */
 
 function startSubject(subject){
 
-subjectFilter=subject;
+  currentQuestions = questions.filter(function(q){
+    return q.subject === subject;
+  });
 
-const index=questions.findIndex(function(q){
-return q.subject===subject;
-});
+  currentQuestion = 0;
+  score = 0;
 
-if(index>=0){
+  startTimer();
 
-currentQuestion=index;
-score=0;
+  showPage("practice");
 
-showPage("practice");
-
-loadQuestion();
-
+  loadQuestion();
 }
 
-}
+
+/* =========================
+   LOAD QUESTION
+   ========================= */
 
 function loadQuestion(){
 
-answered=false;
+  if(currentQuestions.length === 0){
+    return;
+  }
 
-const q=questions[currentQuestion];
+  answered = false;
+  selectedAnswer = null;
 
-document.getElementById("subject").textContent=q.subject;
+  const q = currentQuestions[currentQuestion];
 
-document.getElementById("counter").textContent=
-"Question "+(currentQuestion+1)+" / "+questions.length;
+  document.getElementById("subject").textContent = q.subject;
 
-document.getElementById("question").textContent=q.question;
-
-document.getElementById("result").textContent="";
-
-document.getElementById("explanation").style.display="none";
-
-document.getElementById("bar").style.width=
-((currentQuestion+1)/questions.length*100)+"%";
-
-const container=document.getElementById("options");
-
-container.innerHTML="";
-
-q.options.forEach(function(option,index){
-
-const button=document.createElement("button");
-
-button.className="option";
-
-button.textContent=
-String.fromCharCode(65+index)+". "+option;
-
-button.onclick=function(){
-checkAnswer(button,index===q.answer);
-};
-
-container.appendChild(button);
-
-});
-
-}
-
-function checkAnswer(button,correct){
-
-if(answered)return;
-
-answered=true;
-
-const q=questions[currentQuestion];
-
-const result=document.getElementById("result");
-
-const explanation=document.getElementById("explanation");
-
-if(correct){
-
-score++;
-
-button.classList.add("correct");
-
-result.textContent="✅ Correct!";
-
-result.style.color="#087f45";
-
-}else{
-
-button.classList.add("wrong");
-
-result.textContent="❌ Incorrect.";
-
-result.style.color="#c62828";
-
-document.querySelectorAll(".option").forEach(function(btn,index){
-
-if(index===q.answer){
-btn.classList.add("correct");
-}
-
-});
-
-}
-
-explanation.textContent="💡 "+q.explanation;
-
-explanation.style.display="block";
-
-}
-
-function nextQuestion(){
-
-currentQuestion++;
-
-if(currentQuestion>=questions.length){
-
-finishPractice();
-
-return;
-
-}
-
-loadQuestion();
-
-}
-
-function finishPractice(){
-
-const percentage=
-Math.round((score/questions.length)*100);
-
-document.getElementById("finalScore").textContent=
-percentage+"%";
-
-document.getElementById("scoreInfo").textContent=
-"You answered "+score+
-" out of "+questions.length+
-" questions correctly.";
-
-showPage("results");
-
-}
-
-function toggleDark(){
-
-document.body.classList.toggle("dark");
-
-}
-
-function resetScore(){
-
-score=0;
-
-currentQuestion=0;
-
-document.getElementById("finalScore").textContent="0%";
-
-document.getElementById("scoreInfo").textContent=
-"Start a practice session to see your result.";
-
-showPage("home");
-
-}
-
-loadQuestion();
-
-</script>
-
-</body>
-  </html>
+  document.getElementById("counter").textContent =
