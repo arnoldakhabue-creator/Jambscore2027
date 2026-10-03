@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAMBScore 2027</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#17211b}
+header{background:#008751;color:white;padding:18px 16px;position:sticky;top:0;z-index:5}
+header h1{margin:0;font-size:24px}header p{margin:5px 0 0;opacity:.9}
+main{max-width:900px;margin:auto;padding:18px}
+.card{background:white;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 3px 14px #00000012}
+.hero{background:#008751;color:white;border-radius:22px;padding:24px}
+.hero h2{margin-top:0;font-size:28px}
+button{border:0;border-radius:12px;padding:12px 16px;background:#008751;color:white;font-weight:bold;cursor:pointer;margin:4px}
+button.secondary{background:#e7f5ee;color:#006b40}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat{padding:16px;border-radius:15px;background:#eef8f2;text-align:center}.stat b{font-size:25px;display:block}
+.option{display:block;width:100%;text-align:left;background:#f2f5f3;color:#17211b;margin:9px 0}
+.option:hover{background:#dff2e8}
+#quiz{display:none}.small{color:#66736b;font-size:14px}
+.progress{height:9px;background:#dfe8e3;border-radius:9px;overflow:hidden}.bar{height:100%;background:#008751;width:0}
+footer{text-align:center;padding:25px;color:#6b756f}
+</style>
+</head>
+<body>
+<header><h1>JAMBScore 2027</h1><p>Simple CBT preparation for Nigerian students</p></header>
+<main>
+<section class="hero">
+<h2>Prepare smarter. Score higher.</h2>
+<p>Practice JAMB-style questions, track your progress and build confidence.</p>
+<button onclick="startQuiz()">Start Quick CBT</button>
+</section>
+
+<div class="grid">
+<div class="stat"><b id="score">0</b><span>Score</span></div>
+<div class="stat"><b id="answered">0</b><span>Answered</span></div>
+<div class="stat"><b id="streak">0</b><span>Streak</span></div>
+</div>
+
+<section class="card">
+<h2>Subjects</h2>
+<div class="grid">
+<button class="secondary" onclick="startQuiz('English')">English</button>
+<button class="secondary" onclick="startQuiz('Mathematics')">Mathematics</button>
+<button class="secondary" onclick="startQuiz('Government')">Government</button>
+<button class="secondary" onclick="startQuiz('Biology')">Biology</button>
+</div>
+</section>
+
+<section id="quiz" class="card">
+<div class="progress"><div class="bar" id="bar"></div></div>
+<p class="small" id="subject"></p>
+<h2 id="question"></h2>
+<div id="options"></div>
+<p id="feedback"></p>
+<button onclick="nextQuestion()" id="next" style="display:none">Next question</button>
+</section>
+
+<section class="card">
+<h2>How it works</h2>
+<p>Choose a subject, answer questions and keep practising. Your score is saved on this device.</p>
+</section>
+</main>
+<footer>JAMBScore 2027 • Practice app</footer>
+
+<script>
+const bank={
+English:[
+{q:"Choose the word nearest in meaning to “rapid”.",o:["Slow","Quick","Weak","Late"],a:1},
+{q:"Choose the correctly spelled word.",o:["Necessary","Neccessary","Necesary","Nessesary"],a:0},
+{q:"A person who writes books is an ____.",o:["author","audience","actor","artist"],a:0}
+],
+Mathematics:[
+{q:"What is 15% of 200?",o:["20","25","30","35"],a:2},
+{q:"If x + 7 = 15, find x.",o:["6","7","8","9"],a:2},
+{q:"What is 3 × 8 + 4?",o:["28","30","32","36"],a:0}
+],
+Government:[
+{q:"Which is a feature of democracy?",o:["Popular participation","Military rule","One-party dictatorship","Absolute monarchy"],a:0},
+{q:"The constitution is best described as the ____.",o:["highest law of a state","national anthem","electoral register","party manifesto"],a:0},
+{q:"Which arm of government makes laws?",o:["Executive","Legislature","Judiciary","Civil service"],a:1}
+],
+Biology:[
+{q:"Which organelle is mainly responsible for energy production in cells?",o:["Ribosome","Nucleus","Mitochondrion","Vacuole"],a:2},
+{q:"Plants make food mainly by ____.",o:["respiration","photosynthesis","digestion","excretion"],a:1},
+{q:"The basic unit of life is the ____.",o:["tissue","organ","cell","system"],a:2}
+]};
+
+let currentSubject="English", questions=[], index=0, score=Number(localStorage.getItem("js_score")||0), answered=Number(localStorage.getItem("js_answered")||0), streak=Number(localStorage.getItem("js_streak")||0);
+document.getElementById("score").textContent=score;document.getElementById("answered").textContent=answered;document.getElementById("streak").textContent=streak;
+
+function startQuiz(subject="English"){
+ currentSubject=subject;questions=[...bank[subject]].sort(()=>Math.random()-.5);index=0;
+ document.getElementById("quiz").style.display="block";document.getElementById("quiz").scrollIntoView({behavior:"smooth"});showQuestion();
+}
+function showQuestion(){
+ const x=questions[index];document.getElementById("subject").textContent=currentSubject+" • Question "+(index+1)+" of "+questions.length;
+ document.getElementById("question").textContent=x.q;document.getElementById("bar").style.width=((index)/questions.length*100)+"%";
+ document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";
+ const box=document.getElementById("options");box.innerHTML="";
+ x.o.forEach((opt,i)=>{const b=document.createElement("button");b.className="option";b.textContent=String.fromCharCode(65+i)+". "+opt;b.onclick=()=>answer(i);box.appendChild(b)});
+}
+function answer(i){
+ const x=questions[index];document.querySelectorAll(".option").forEach(b=>b.disabled=true);
+ if(i===x.a){score++;streak++;document.getElementById("feedback").textContent="✅ Correct!";}else{streak=0;document.getElementById("feedback").textContent="❌ Not quite. Keep practising!";}
+ answered++;localStorage.setItem("js_score",score);localStorage.setItem("js_answered",answered);localStorage.setItem("js_streak",streak);
+ document.getElementById("score").textContent=score;document.getElementById("answered").textContent=answered;document.getElementById("streak").textContent=streak;
+ document.getElementById("next").style.display="inline-block";
+}
+function nextQuestion(){
+ index++; if(index>=questions.length){document.getElementById("question").textContent="🎉 Practice round complete!";document.getElementById("options").innerHTML="";document.getElementById("feedback").textContent="Try another subject to keep practising.";document.getElementById("next").style.display="none";document.getElementById("bar").style.width="100%";return;} showQuestion();
+}
+</script>
+</body>
+</html>
