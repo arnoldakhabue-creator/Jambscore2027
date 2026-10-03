@@ -1,116 +1,579 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>JAMBScore 2027</title>
-<style>
-*{box-sizing:border-box}body{margin:0;font-family:Arial,sans-serif;background:#f5f8f6;color:#17211b}
-header{background:#008751;color:white;padding:18px 16px;position:sticky;top:0;z-index:5}
-header h1{margin:0;font-size:24px}header p{margin:5px 0 0;opacity:.9}
-main{max-width:900px;margin:auto;padding:18px}
-.card{background:white;border-radius:18px;padding:18px;margin:14px 0;box-shadow:0 3px 14px #00000012}
-.hero{background:#008751;color:white;border-radius:22px;padding:24px}
-.hero h2{margin-top:0;font-size:28px}
-button{border:0;border-radius:12px;padding:12px 16px;background:#008751;color:white;font-weight:bold;cursor:pointer;margin:4px}
-button.secondary{background:#e7f5ee;color:#006b40}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
-.stat{padding:16px;border-radius:15px;background:#eef8f2;text-align:center}.stat b{font-size:25px;display:block}
-.option{display:block;width:100%;text-align:left;background:#f2f5f3;color:#17211b;margin:9px 0}
-.option:hover{background:#dff2e8}
-#quiz{display:none}.small{color:#66736b;font-size:14px}
-.progress{height:9px;background:#dfe8e3;border-radius:9px;overflow:hidden}.bar{height:100%;background:#008751;width:0}
-footer{text-align:center;padding:25px;color:#6b756f}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>JAMBScore 2027 | JAMB Preparation Platform</title>
+
+  <meta name="description" content="JAMBScore 2027 - Practice JAMB questions, study with syllabus-based lessons, track your scores and prepare smarter for UTME.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f5f7fb;
+      color: #172033;
+    }
+
+    header {
+      background: linear-gradient(135deg, #075e35, #0b8f4d);
+      color: white;
+      padding: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.15);
+    }
+
+    .nav {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .logo span {
+      color: #ffd43b;
+    }
+
+    .nav button {
+      background: white;
+      color: #075e35;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, #064d2d, #0b8f4d);
+      color: white;
+      padding: 55px 20px;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero h1 span {
+      color: #ffd43b;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: auto;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      margin-top: 25px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 20px;
+      margin: 5px;
+      border-radius: 9px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .primary {
+      background: #ffd43b;
+      color: #172033;
+    }
+
+    .secondary {
+      background: white;
+      color: #075e35;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 30px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .section-title p {
+      color: #657083;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: white;
+      padding: 22px;
+      border-radius: 14px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+    }
+
+    .card h3 {
+      margin: 12px 0 8px;
+    }
+
+    .card p {
+      color: #657083;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .icon {
+      font-size: 35px;
+    }
+
+    .practice {
+      background: white;
+      margin-top: 20px;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+    }
+
+    .question {
+      font-size: 18px;
+      font-weight: bold;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    .option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 14px;
+      margin: 9px 0;
+      border: 1px solid #dce2ea;
+      background: #fafbfc;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .option:hover {
+      background: #eaf7ef;
+      border-color: #0b8f4d;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 15px;
+      margin: 25px 0;
+    }
+
+    .stat {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 28px;
+      color: #078348;
+      margin-bottom: 5px;
+    }
+
+    .tips {
+      background: #eaf7ef;
+      border-left: 5px solid #078348;
+      padding: 20px;
+      border-radius: 10px;
+      margin-top: 25px;
+      line-height: 1.7;
+    }
+
+    footer {
+      background: #172033;
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      margin-top: 40px;
+    }
+
+    footer p {
+      color: #c8ced8;
+      margin-top: 8px;
+      font-size: 14px;
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        font-size: 30px;
+      }
+
+      .logo {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header><h1>JAMBScore 2027</h1><p>Simple CBT preparation for Nigerian students</p></header>
-<main>
-<section class="hero">
-<h2>Prepare smarter. Score higher.</h2>
-<p>Practice JAMB-style questions, track your progress and build confidence.</p>
-<button onclick="startQuiz()">Start Quick CBT</button>
-</section>
 
-<div class="grid">
-<div class="stat"><b id="score">0</b><span>Score</span></div>
-<div class="stat"><b id="answered">0</b><span>Answered</span></div>
-<div class="stat"><b id="streak">0</b><span>Streak</span></div>
-</div>
+  <header>
+    <div class="nav">
+      <div class="logo">JAMB<span>Score</span> 2027</div>
+      <button onclick="scrollToPractice()">Practice Now</button>
+    </div>
+  </header>
 
-<section class="card">
-<h2>Subjects</h2>
-<div class="grid">
-<button class="secondary" onclick="startQuiz('English')">English</button>
-<button class="secondary" onclick="startQuiz('Mathematics')">Mathematics</button>
-<button class="secondary" onclick="startQuiz('Government')">Government</button>
-<button class="secondary" onclick="startQuiz('Biology')">Biology</button>
-</div>
-</section>
+  <section class="hero">
+    <h1>Prepare Smarter for <span>JAMB 2027</span></h1>
 
-<section id="quiz" class="card">
-<div class="progress"><div class="bar" id="bar"></div></div>
-<p class="small" id="subject"></p>
-<h2 id="question"></h2>
-<div id="options"></div>
-<p id="feedback"></p>
-<button onclick="nextQuestion()" id="next" style="display:none">Next question</button>
-</section>
+    <p>
+      Practice syllabus-based questions, test your knowledge,
+      improve your scores and prepare confidently for UTME.
+    </p>
 
-<section class="card">
-<h2>How it works</h2>
-<p>Choose a subject, answer questions and keep practising. Your score is saved on this device.</p>
-</section>
-</main>
-<footer>JAMBScore 2027 • Practice app</footer>
+    <div class="hero-buttons">
+      <button class="btn primary" onclick="scrollToPractice()">
+        Start Practicing
+      </button>
 
-<script>
-const bank={
-English:[
-{q:"Choose the word nearest in meaning to “rapid”.",o:["Slow","Quick","Weak","Late"],a:1},
-{q:"Choose the correctly spelled word.",o:["Necessary","Neccessary","Necesary","Nessesary"],a:0},
-{q:"A person who writes books is an ____.",o:["author","audience","actor","artist"],a:0}
-],
-Mathematics:[
-{q:"What is 15% of 200?",o:["20","25","30","35"],a:2},
-{q:"If x + 7 = 15, find x.",o:["6","7","8","9"],a:2},
-{q:"What is 3 × 8 + 4?",o:["28","30","32","36"],a:0}
-],
-Government:[
-{q:"Which is a feature of democracy?",o:["Popular participation","Military rule","One-party dictatorship","Absolute monarchy"],a:0},
-{q:"The constitution is best described as the ____.",o:["highest law of a state","national anthem","electoral register","party manifesto"],a:0},
-{q:"Which arm of government makes laws?",o:["Executive","Legislature","Judiciary","Civil service"],a:1}
-],
-Biology:[
-{q:"Which organelle is mainly responsible for energy production in cells?",o:["Ribosome","Nucleus","Mitochondrion","Vacuole"],a:2},
-{q:"Plants make food mainly by ____.",o:["respiration","photosynthesis","digestion","excretion"],a:1},
-{q:"The basic unit of life is the ____.",o:["tissue","organ","cell","system"],a:2}
-]};
+      <button class="btn secondary" onclick="showSubjects()">
+        Explore Subjects
+      </button>
+    </div>
+  </section>
 
-let currentSubject="English", questions=[], index=0, score=Number(localStorage.getItem("js_score")||0), answered=Number(localStorage.getItem("js_answered")||0), streak=Number(localStorage.getItem("js_streak")||0);
-document.getElementById("score").textContent=score;document.getElementById("answered").textContent=answered;document.getElementById("streak").textContent=streak;
+  <main class="container">
 
-function startQuiz(subject="English"){
- currentSubject=subject;questions=[...bank[subject]].sort(()=>Math.random()-.5);index=0;
- document.getElementById("quiz").style.display="block";document.getElementById("quiz").scrollIntoView({behavior:"smooth"});showQuestion();
-}
-function showQuestion(){
- const x=questions[index];document.getElementById("subject").textContent=currentSubject+" • Question "+(index+1)+" of "+questions.length;
- document.getElementById("question").textContent=x.q;document.getElementById("bar").style.width=((index)/questions.length*100)+"%";
- document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";
- const box=document.getElementById("options");box.innerHTML="";
- x.o.forEach((opt,i)=>{const b=document.createElement("button");b.className="option";b.textContent=String.fromCharCode(65+i)+". "+opt;b.onclick=()=>answer(i);box.appendChild(b)});
-}
-function answer(i){
- const x=questions[index];document.querySelectorAll(".option").forEach(b=>b.disabled=true);
- if(i===x.a){score++;streak++;document.getElementById("feedback").textContent="✅ Correct!";}else{streak=0;document.getElementById("feedback").textContent="❌ Not quite. Keep practising!";}
- answered++;localStorage.setItem("js_score",score);localStorage.setItem("js_answered",answered);localStorage.setItem("js_streak",streak);
- document.getElementById("score").textContent=score;document.getElementById("answered").textContent=answered;document.getElementById("streak").textContent=streak;
- document.getElementById("next").style.display="inline-block";
-}
-function nextQuestion(){
- index++; if(index>=questions.length){document.getElementById("question").textContent="🎉 Practice round complete!";document.getElementById("options").innerHTML="";document.getElementById("feedback").textContent="Try another subject to keep practising.";document.getElementById("next").style.display="none";document.getElementById("bar").style.width="100%";return;} showQuestion();
-}
-</script>
+    <div class="stats">
+      <div class="stat">
+        <strong>2027</strong>
+        JAMB Target
+      </div>
+
+      <div class="stat">
+        <strong>4+</strong>
+        Core Subjects
+      </div>
+
+      <div class="stat">
+        <strong>100%</strong>
+        Free Practice
+      </div>
+
+      <div class="stat">
+        <strong>24/7</strong>
+        Study Anytime
+      </div>
+    </div>
+
+    <section id="subjects">
+
+      <div class="section-title">
+        <h2>Choose Your Subject</h2>
+        <p>Start with the subject you want to practice.</p>
+      </div>
+
+      <div class="cards">
+
+        <div class="card">
+          <div class="icon">📖</div>
+          <h3>Use of English</h3>
+          <p>
+            Practice comprehension, vocabulary, grammar,
+            lexis and sentence structure.
+          </p>
+          <button class="btn primary" onclick="startSubject('English')">
+            Practice
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="icon">🔢</div>
+          <h3>Mathematics</h3>
+          <p>
+            Improve your skills with algebra, geometry,
+            statistics and calculations.
+          </p>
+          <button class="btn primary" onclick="startSubject('Mathematics')">
+            Practice
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="icon">🏛️</div>
+          <h3>Government</h3>
+          <p>
+            Study forms of government, political systems,
+            constitutions and civic concepts.
+          </p>
+          <button class="btn primary" onclick="startSubject('Government')">
+            Practice
+          </button>
+        </div>
+
+        <div class="card">
+          <div class="icon">🧬</div>
+          <h3>Biology</h3>
+          <p>
+            Practice questions covering cells, ecology,
+            genetics, evolution and human biology.
+          </p>
+          <button class="btn primary" onclick="startSubject('Biology')">
+            Practice
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="practice" style="margin-top:45px;">
+
+      <div class="section-title">
+        <h2>JAMB Practice Question</h2>
+        <p>Test yourself and see your answer immediately.</p>
+      </div>
+
+      <div class="practice">
+
+        <div id="subjectLabel" style="color:#078348;font-weight:bold;margin-bottom:10px;">
+          Government
+        </div>
+
+        <div class="question" id="question">
+          Which of the following is a characteristic of democracy?
+        </div>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+          A. Rule by one person without elections
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, true)">
+          B. Participation of citizens in choosing representatives
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+          C. Suspension of all political parties
+        </button>
+
+        <button class="option" onclick="checkAnswer(this, false)">
+          D. Government without a constitution
+        </button>
+
+        <div class="result" id="result"></div>
+
+        <button class="btn primary" onclick="nextQuestion()" style="margin-top:15px;">
+          Next Question →
+        </button>
+
+      </div>
+
+    </section>
+
+    <section style="margin-top:45px;">
+
+      <div class="section-title">
+        <h2>Study Tips</h2>
+        <p>Small improvements every day can make a big difference.</p>
+      </div>
+
+      <div class="tips">
+        <strong>💡 JAMBScore 2027 Tip:</strong>
+
+        <p>
+          Don't just memorize answers. Understand why an answer is correct.
+          Practice regularly, review questions you missed and study according
+          to the official JAMB syllabus.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <footer>
+    <h3>JAMBScore 2027</h3>
+    <p>
+      Your preparation journey starts here.
+    </p>
+
+    <p>
+      © 2026 JAMBScore 2027
+    </p>
+  </footer>
+
+
+  <script>
+
+    const questions = [
+
+      {
+        subject: "Government",
+        question: "Which of the following is a characteristic of democracy?",
+        options: [
+          "Rule by one person without elections",
+          "Participation of citizens in choosing representatives",
+          "Suspension of all political parties",
+          "Government without a constitution"
+        ],
+        answer: 1
+      },
+
+      {
+        subject: "English",
+        question: "Choose the word that is closest in meaning to 'brief'.",
+        options: [
+          "Long",
+          "Short",
+          "Difficult",
+          "Heavy"
+        ],
+        answer: 1
+      },
+
+      {
+        subject: "Mathematics",
+        question: "If 2x + 6 = 14, what is the value of x?",
+        options: [
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        answer: 2
+      },
+
+      {
+        subject: "Biology",
+        question: "Which organelle is mainly responsible for releasing energy from food in a cell?",
+        options: [
+          "Nucleus",
+          "Ribosome",
+          "Mitochondrion",
+          "Cell wall"
+        ],
+        answer: 2
+      }
+
+    ];
+
+    let currentQuestion = 0;
+    let answered = false;
+
+    function scrollToPractice() {
+      document.getElementById("practice").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function showSubjects() {
+      document.getElementById("subjects").scrollIntoView({
+        behavior: "smooth"
+      });
+    }
+
+    function startSubject(subject) {
+      const index = questions.findIndex(q => q.subject === subject);
+
+      if (index !== -1) {
+        currentQuestion = index;
+        loadQuestion();
+        scrollToPractice();
+      }
+    }
+
+    function loadQuestion() {
+
+      answered = false;
+
+      const q = questions[currentQuestion];
+
+      document.getElementById("subjectLabel").textContent = q.subject;
+
+      document.getElementById("question").textContent = q.question;
+
+      document.getElementById("result").textContent = "";
+
+      const buttons = document.querySelectorAll(".option");
+
+      buttons.forEach((button, index) => {
+        button.textContent =
+          String.fromCharCode(65 + index) + ". " + q.options[index];
+
+        button.style.background = "#fafbfc";
+        button.style.borderColor = "#dce2ea";
+
+        button.onclick = function() {
+          checkAnswer(this, index === q.answer);
+        };
+      });
+    }
+
+    function checkAnswer(button, correct) {
+
+      if (answered) return;
+
+      answered = true;
+
+      const result = document.getElementById("result");
+
+      if (correct) {
+        result.textContent = "✅ Correct! Great job.";
+        result.style.color = "#078348";
+      } else {
+        result.textContent = "❌ Not quite. Try to understand the correct answer before moving on.";
+        result.style.color = "#c62828";
+      }
+    }
+
+    function nextQuestion() {
+
+      currentQuestion++;
+
+      if (currentQuestion >= questions.length) {
+        currentQuestion = 0;
+      }
+
+      loadQuestion();
+    }
+
+  </script>
+
 </body>
-</html>
+ </html>
