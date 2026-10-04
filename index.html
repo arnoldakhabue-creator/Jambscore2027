@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="JAMBScore 2027 - Free JAMB preparation and practice platform for Nigerian students.">
+
+<meta name="description" content="JAMBScore 2027 - Free JAMB CBT preparation and practice platform for Nigerian students.">
+
 <title>JAMBScore 2027</title>
 
 <style>
@@ -211,12 +213,33 @@ section {
   border-radius: 12px;
 }
 
+.features {
+  margin-top: 20px;
+}
+
+.about {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  text-align: center;
+}
+
+.about p {
+  color: var(--gray);
+  max-width: 750px;
+  margin: auto;
+}
+
 footer {
   text-align: center;
   background: var(--dark);
   color: white;
   padding: 30px;
   margin-top: 30px;
+}
+
+footer p {
+  margin: 5px 0;
 }
 
 @media (max-width: 650px) {
@@ -226,3 +249,402 @@ footer {
 
   .hero {
     padding: 55px 5%;
+  }
+
+  section {
+    padding: 40px 5%;
+  }
+
+  .hero p {
+    font-size: 16px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <nav>
+    <div class="logo">
+      JAMB<span>Score</span> 2027
+    </div>
+
+    <div>
+      <a href="#home">Home</a>
+      <a href="#subjects">Subjects</a>
+      <a href="#about">About</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+<section class="hero" id="home">
+  <h1>Prepare. Practice. <span>Score Higher.</span></h1>
+
+  <p>
+    Welcome to JAMBScore 2027 — a simple and free platform
+    designed to help Nigerian students prepare for JAMB.
+  </p>
+
+  <a href="#subjects" class="btn">
+    Start Practicing
+  </a>
+</section>
+
+<section>
+  <h2 class="section-title">Why JAMBScore?</h2>
+
+  <div class="cards">
+
+    <div class="card">
+      <h3>📚 Practice Questions</h3>
+      <p>
+        Practice questions and test your knowledge before the real examination.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🎯 Track Your Score</h3>
+      <p>
+        See how well you perform after answering practice questions.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>📱 Mobile Friendly</h3>
+      <p>
+        Study comfortably from your phone, tablet or computer.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>🇳🇬 Made for JAMB</h3>
+      <p>
+        Built with Nigerian students preparing for JAMB in mind.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="subjects">
+
+  <h2 class="section-title">Choose a Subject</h2>
+
+  <div class="subjects">
+
+    <button onclick="startPractice('English')">
+      📖 Use of English
+    </button>
+
+    <button onclick="startPractice('Mathematics')">
+      ➗ Mathematics
+    </button>
+
+    <button onclick="startPractice('Government')">
+      🏛️ Government
+    </button>
+
+    <button onclick="startPractice('Biology')">
+      🧬 Biology
+    </button>
+
+    <button onclick="startPractice('Economics')">
+      📈 Economics
+    </button>
+
+  </div>
+
+  <div id="practice">
+
+    <h2 id="subjectTitle"></h2>
+
+    <div id="questionNumber"></div>
+
+    <div class="question" id="question"></div>
+
+    <div id="options"></div>
+
+    <div id="result"></div>
+
+    <div id="scoreBox">
+      <h2>Practice Complete 🎉</h2>
+      <p id="finalScore"></p>
+
+      <button class="btn" onclick="restartPractice()">
+        Try Again
+      </button>
+    </div>
+
+  </div>
+
+</section>
+
+<section id="about">
+
+  <h2 class="section-title">About JAMBScore 2027</h2>
+
+  <div class="about">
+
+    <p>
+      JAMBScore 2027 is a student-focused JAMB preparation platform.
+      Our goal is to make studying easier, more accessible and more
+      enjoyable for students preparing for the UTME.
+    </p>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer>
+
+  <p><strong>JAMBScore 2027</strong></p>
+
+  <p>
+    Free JAMB preparation for Nigerian students.
+  </p>
+
+  <p>
+    © 2027 JAMBScore. All rights reserved.
+  </p>
+
+</footer>
+
+<script>
+
+const questions = {
+
+  English: [
+    {
+      question: "Choose the word that is closest in meaning to 'happy'.",
+      options: ["Sad", "Joyful", "Angry", "Tired"],
+      answer: 1
+    },
+    {
+      question: "Choose the correctly spelt word.",
+      options: ["Recieve", "Receive", "Receeve", "Receve"],
+      answer: 1
+    },
+    {
+      question: "What is the opposite of 'ancient'?",
+      options: ["Old", "Historic", "Modern", "Past"],
+      answer: 2
+    }
+  ],
+
+  Mathematics: [
+    {
+      question: "What is 12 × 5?",
+      options: ["50", "60", "70", "80"],
+      answer: 1
+    },
+    {
+      question: "What is 25% of 200?",
+      options: ["25", "40", "50", "75"],
+      answer: 2
+    },
+    {
+      question: "If x + 5 = 12, what is x?",
+      options: ["5", "6", "7", "8"],
+      answer: 2
+    }
+  ],
+
+  Government: [
+    {
+      question: "Which arm of government makes laws?",
+      options: ["Executive", "Judiciary", "Legislature", "Police"],
+      answer: 2
+    },
+    {
+      question: "Nigeria operates a ______ system of government.",
+      options: ["Monarchical", "Presidential", "Military", "Communist"],
+      answer: 1
+    },
+    {
+      question: "The constitution is best described as the ______ law of a country.",
+      options: ["Minor", "Supreme", "Local", "Temporary"],
+      answer: 1
+    }
+  ],
+
+  Biology: [
+    {
+      question: "Which organelle is known as the powerhouse of the cell?",
+      options: ["Nucleus", "Ribosome", "Mitochondrion", "Vacuole"],
+      answer: 2
+    },
+    {
+      question: "Plants manufacture food through a process called ______.",
+      options: ["Respiration", "Photosynthesis", "Digestion", "Excretion"],
+      answer: 1
+    },
+    {
+      question: "Which gas is mainly used by plants during photosynthesis?",
+      options: ["Oxygen", "Nitrogen", "Carbon dioxide", "Hydrogen"],
+      answer: 2
+    }
+  ],
+
+  Economics: [
+    {
+      question: "Economics is mainly concerned with the study of ______.",
+      options: [
+        "Unlimited resources",
+        "Scarce resources and unlimited wants",
+        "Weather",
+        "Animals"
+      ],
+      answer: 1
+    },
+    {
+      question: "The reward for labour is called ______.",
+      options: ["Rent", "Interest", "Wages", "Profit"],
+      answer: 2
+    },
+    {
+      question: "The reward for capital is called ______.",
+      options: ["Wages", "Rent", "Interest", "Profit"],
+      answer: 2
+    }
+  ]
+
+};
+
+let currentSubject = "";
+let currentQuestion = 0;
+let score = 0;
+
+function startPractice(subject) {
+
+  currentSubject = subject;
+  currentQuestion = 0;
+  score = 0;
+
+  document.getElementById("practice").style.display = "block";
+
+  document.getElementById("practice").scrollIntoView({
+    behavior: "smooth"
+  });
+
+  document.getElementById("subjectTitle").textContent =
+    subject + " Practice";
+
+  document.getElementById("scoreBox").style.display = "none";
+
+  showQuestion();
+}
+
+function showQuestion() {
+
+  const list = questions[currentSubject];
+
+  if (currentQuestion >= list.length) {
+    finishPractice();
+    return;
+  }
+
+  const q = list[currentQuestion];
+
+  document.getElementById("questionNumber").textContent =
+    "Question " + (currentQuestion + 1) + " of " + list.length;
+
+  document.getElementById("question").textContent =
+    q.question;
+
+  document.getElementById("result").textContent = "";
+
+  const optionsContainer =
+    document.getElementById("options");
+
+  optionsContainer.innerHTML = "";
+
+  q.options.forEach((option, index) => {
+
+    const button = document.createElement("button");
+
+    button.className = "option";
+    button.textContent = option;
+
+    button.onclick = function() {
+      selectAnswer(index);
+    };
+
+    optionsContainer.appendChild(button);
+
+  });
+}
+
+function selectAnswer(selected) {
+
+  const q = questions[currentSubject][currentQuestion];
+
+  const buttons =
+    document.querySelectorAll(".option");
+
+  buttons.forEach(button => {
+    button.disabled = true;
+  });
+
+  if (selected === q.answer) {
+
+    score++;
+
+    document.getElementById("result").textContent =
+      "✅ Correct!";
+
+  } else {
+
+    document.getElementById("result").textContent =
+      "❌ Incorrect. The correct answer is: " +
+      q.options[q.answer];
+
+  }
+
+  setTimeout(function() {
+
+    currentQuestion++;
+
+    showQuestion();
+
+  }, 1000);
+}
+
+function finishPractice() {
+
+  document.getElementById("questionNumber").textContent = "";
+
+  document.getElementById("question").textContent = "";
+
+  document.getElementById("options").innerHTML = "";
+
+  document.getElementById("result").textContent = "";
+
+  document.getElementById("scoreBox").style.display = "block";
+
+  const total = questions[currentSubject].length;
+
+  document.getElementById("finalScore").textContent =
+    "You scored " + score + " out of " + total + ".";
+
+}
+
+function restartPractice() {
+
+  currentQuestion = 0;
+  score = 0;
+
+  document.getElementById("scoreBox").style.display = "none";
+
+  showQuestion();
+
+}
+
+</script>
+
+</body>
+</html>
