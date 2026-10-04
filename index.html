@@ -1,24 +1,228 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="JAMBScore 2027 - Free JAMB preparation, practice questions, subjects, scores and study tools for Nigerian students.">
-  <title>JAMBScore 2027 | JAMB Preparation Platform</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="JAMBScore 2027 - Free JAMB preparation and practice platform for Nigerian students.">
+<title>JAMBScore 2027</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+<style>
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
-    :root {
-      --primary: #087f5b;
-      --primary-dark: #056044;
-      --accent: #f4b400;
-      --dark: #102a24;
-      --light: #f5f9f7;
-      --white: #ffffff;
-      --gray: #66736e;
-      --border: #d
+:root {
+  --green: #087f5b;
+  --dark: #073b2b;
+  --gold: #f4b400;
+  --light: #f5f9f7;
+  --gray: #66736e;
+  --white: #ffffff;
+  --red: #d93025;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: var(--light);
+  color: #13231e;
+  line-height: 1.5;
+}
+
+header {
+  background: linear-gradient(135deg, var(--dark), var(--green));
+  color: white;
+  padding: 18px 6%;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+nav {
+  max-width: 1100px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 23px;
+  font-weight: 800;
+}
+
+.logo span {
+  color: var(--gold);
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 18px;
+  font-weight: 600;
+}
+
+.hero {
+  padding: 75px 6%;
+  text-align: center;
+  background: white;
+}
+
+.hero h1 {
+  font-size: clamp(36px, 8vw, 64px);
+  color: var(--dark);
+  margin-bottom: 15px;
+}
+
+.hero h1 span {
+  color: var(--green);
+}
+
+.hero p {
+  max-width: 700px;
+  margin: 0 auto 28px;
+  color: var(--gray);
+  font-size: 18px;
+}
+
+.btn {
+  display: inline-block;
+  border: 0;
+  border-radius: 10px;
+  padding: 14px 22px;
+  background: var(--green);
+  color: white;
+  text-decoration: none;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn.gold {
+  background: var(--gold);
+  color: #222;
+}
+
+section {
+  max-width: 1100px;
+  margin: auto;
+  padding: 50px 6%;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 28px;
+  font-size: 30px;
+  color: var(--dark);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.card {
+  background: white;
+  padding: 25px;
+  border-radius: 16px;
+  box-shadow: 0 5px 18px #00000010;
+}
+
+.card h3 {
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.card p {
+  color: var(--gray);
+}
+
+.subjects button {
+  width: 100%;
+  text-align: left;
+  background: white;
+  border: 1px solid #d7e2dd;
+  border-radius: 10px;
+  padding: 17px;
+  margin-bottom: 10px;
+  font-weight: 700;
+  color: var(--dark);
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.subjects button:hover {
+  border-color: var(--green);
+}
+
+#practice {
+  display: none;
+  background: white;
+  border-radius: 16px;
+  padding: 25px;
+  margin-top: 25px;
+  box-shadow: 0 5px 18px #00000010;
+}
+
+#subjectTitle {
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.question {
+  font-size: 19px;
+  font-weight: 700;
+  margin: 15px 0;
+}
+
+.option {
+  display: block;
+  width: 100%;
+  padding: 13px;
+  margin: 8px 0;
+  border: 1px solid #d7e2dd;
+  background: white;
+  border-radius: 9px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.option:hover {
+  border-color: var(--green);
+}
+
+.option:disabled {
+  cursor: not-allowed;
+}
+
+#result {
+  margin-top: 15px;
+  font-weight: 700;
+}
+
+#scoreBox {
+  display: none;
+  text-align: center;
+  background: var(--light);
+  padding: 20px;
+  margin-top: 15px;
+  border-radius: 12px;
+}
+
+footer {
+  text-align: center;
+  background: var(--dark);
+  color: white;
+  padding: 30px;
+  margin-top: 30px;
+}
+
+@media (max-width: 650px) {
+  nav a {
+    display: none;
+  }
+
+  .hero {
+    padding: 55px 5%;
